@@ -8,7 +8,7 @@ import { darkThemeSelector } from "./redux/selectors";
 import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import Favorites from "./pages/favorites";
-import NotFoundPage from "./components/notFoundPage";
+import NotFoundPage from "./pages/notFoundPage";
 
 function App({ isDarkTheme }) {
   const currentTheme =

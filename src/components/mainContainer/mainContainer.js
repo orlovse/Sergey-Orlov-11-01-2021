@@ -1,9 +1,9 @@
-import Card from "../card";
+import WeatherCard from "../weatherCard";
 const MainContainer = () => {
   return (
     <>
       <div>Main con</div>
-      <Card />
+      <WeatherCard />
     </>
   );
 };
