@@ -1,0 +1,7 @@
+.link {
+  text-decoration: none;
+}
+
+.active {
+  background-color: rgba(101, 83, 255, 0.425);
+}
