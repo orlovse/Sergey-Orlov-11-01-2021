@@ -22,7 +22,7 @@ export const lightTheme = createMuiTheme({
       main: "#b3e5fc",
     },
     secondary: {
-      main: "#e2f6ff",
+      main: "#ecf9ff",
     },
   },
 });
