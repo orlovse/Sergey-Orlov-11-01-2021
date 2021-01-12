@@ -1,16 +1,21 @@
 import WeatherCard from "../weatherCard";
-import { fiveDays } from "../../mockData";
 import { Grid, Box } from "@material-ui/core";
 import styles from "./mainContainer.module.css";
 import { connect } from "react-redux";
-import { currentWeather } from "../../redux/selectors";
+import {
+  currentWeatherSelector,
+  fiveDaysModifiedSelector,
+} from "../../redux/selectors";
 import CurrentWeatherCard from "../currentWeatherCard";
 
-const MainContainer = ({ currentWeather }) => {
+const MainContainer = ({ currentWeather, fiveDaysWeather }) => {
+  if (Object.keys(currentWeather) > 1 && fiveDaysWeather.length < 1)
+    return <div>Loading...</div>;
+
   const { WeatherText, WeatherIcon, Temperature } = currentWeather;
-  const cardsList = fiveDays.DailyForecasts.map((day) => (
-    <Grid item xs key={day.Date}>
-      <WeatherCard />
+  const cardsList = fiveDaysWeather.map((weatherData) => (
+    <Grid item xs key={weatherData.date}>
+      <WeatherCard weatherData={weatherData} />
     </Grid>
   ));
 
@@ -26,5 +31,6 @@ const MainContainer = ({ currentWeather }) => {
 };
 
 export default connect((state) => ({
-  currentWeather: currentWeather(state),
+  currentWeather: currentWeatherSelector(state),
+  fiveDaysWeather: fiveDaysModifiedSelector(state),
 }))(MainContainer);

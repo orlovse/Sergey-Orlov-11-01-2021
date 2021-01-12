@@ -1,12 +1,13 @@
 import MainContainer from "../components/mainContainer";
 import AutocompleteSearch from "../components/autocompleteSearch";
 import { connect } from "react-redux";
-import { loadCurrentWeather } from "../redux/actions";
+import { loadCurrentWeather, loadFiveDaysWeather } from "../redux/actions";
 import { useEffect } from "react";
 
-const Home = ({ loadCurrentWeather }) => {
+const Home = ({ loadCurrentWeather, loadFiveDaysWeather }) => {
   useEffect(() => {
     loadCurrentWeather("id");
+    loadFiveDaysWeather("id");
   }, []);
 
   return (
@@ -17,4 +18,4 @@ const Home = ({ loadCurrentWeather }) => {
   );
 };
 
-export default connect(null, { loadCurrentWeather })(Home);
+export default connect(null, { loadCurrentWeather, loadFiveDaysWeather })(Home);

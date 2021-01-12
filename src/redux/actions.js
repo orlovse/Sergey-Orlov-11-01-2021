@@ -5,8 +5,9 @@ import {
   REQUEST,
   SUCCESS,
   FAILURE,
+  LOAD_FIVE_DAYS_WEATHER,
 } from "./constants";
-import { currentWeather } from "../mockData";
+import { currentWeather, fiveDays } from "../mockData";
 
 export const switchDark = (type) => ({
   type: SWITCH_DARK,
@@ -32,11 +33,24 @@ export const loadCurrentWeather = (cityId) => async (dispatch, getState) => {
   dispatch({ type: LOAD_CURRENT_WEATHER + REQUEST });
   try {
     const response = currentWeather[0];
-    setTimeout(null, 1000);
-    console.log("response", response);
     dispatch({ type: LOAD_CURRENT_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_CURRENT_WEATHER + FAILURE, error });
+    //TODO need toaster or dispatch to error page
+  }
+};
+
+export const loadFiveDaysWeather = (cityId) => async (dispatch, getState) => {
+  const state = getState();
+  const loading = state.loading;
+  const loaded = state.loaded;
+  if (loading || loaded) return;
+  dispatch({ type: LOAD_FIVE_DAYS_WEATHER + REQUEST });
+  try {
+    const response = fiveDays;
+    dispatch({ type: LOAD_FIVE_DAYS_WEATHER + SUCCESS, response });
+  } catch (error) {
+    dispatch({ type: LOAD_FIVE_DAYS_WEATHER + FAILURE, error });
     //TODO need toaster or dispatch to error page
   }
 };

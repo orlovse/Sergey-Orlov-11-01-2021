@@ -1,10 +1,12 @@
-import Card from "@material-ui/core/Card";
-import { getIcon } from "../../utils/icons";
 import { Grid, CardContent } from "@material-ui/core";
+import { getIcon } from "../../utils/icons";
 import styles from "./weatherCard.module.css";
 
-const WeatherCard = () => {
-  const icon = getIcon(3);
+const WeatherCard = ({ weatherData }) => {
+  const { icon, temperature, phrase, weekday } = weatherData;
+  const iconSrc = getIcon(icon);
+  const { Minimum, Maximum } = temperature;
+  const stringTemperature = `${Maximum.Value} / ${Minimum.Value} ${Minimum.Unit}`;
   return (
     <div className={styles.wrapper}>
       <div className={styles.card}>
@@ -15,10 +17,10 @@ const WeatherCard = () => {
             justify="flex-start"
             alignItems="center"
           >
-            <img src={icon} alt="weather-icon"></img>
-            <div>Friday</div>
-            <div>Sunny</div>
-            <div>24 C</div>
+            <img src={iconSrc} alt="weather-icon"></img>
+            <div>{weekday}</div>
+            <div>{phrase}</div>
+            <div>{stringTemperature} </div>
           </Grid>
         </CardContent>
       </div>
