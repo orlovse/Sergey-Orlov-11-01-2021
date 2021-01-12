@@ -7,7 +7,7 @@ const initialState = {
   error: null,
 };
 
-export default (state = initialState, action) => {
+export const currentWeather = (state = initialState, action) => {
   const { type, response, error } = action;
 
   switch (type) {

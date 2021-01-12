@@ -1,5 +1,7 @@
 import { createSelector } from "reselect";
 
+export const currentCityKeySelector = (state) =>
+  state.localUserOptions.currentCityKey;
 export const darkThemeSelector = (state) => state.localUserOptions.isDark;
 export const currentLocationSelector = (state) =>
   state.localUserOptions.currentLocation;

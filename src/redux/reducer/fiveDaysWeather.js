@@ -12,7 +12,7 @@ const initialState = {
   error: null,
 };
 
-export default (state = initialState, action) => {
+export const fiveDaysWeather = (state = initialState, action) => {
   const { type, response, error } = action;
   switch (type) {
     case LOAD_FIVE_DAYS_WEATHER + REQUEST:

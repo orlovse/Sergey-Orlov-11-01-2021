@@ -7,9 +7,17 @@ import {
   FAILURE,
   LOAD_FIVE_DAYS_WEATHER,
   SEARCH_CITY,
+  ADD_TO_FAVORITES,
+  REMOVE_FROM_FAVORITES,
+  SET_CURRENT_CITY_KEY,
 } from "./constants";
 import { currentWeather, fiveDays } from "../mockData";
 import { searchCity } from "../mockData";
+
+export const setCurrentCityKey = (key) => {
+  loadAllWeather(key);
+  return { type: SET_CURRENT_CITY_KEY, payload: { key } };
+};
 
 export const switchDark = (type) => ({
   type: SWITCH_DARK,
@@ -26,6 +34,16 @@ export const getLocation = () => (dispatch) => {
     });
   });
 };
+
+export const addFavorite = (newFavorite) => ({
+  type: ADD_TO_FAVORITES,
+  payload: newFavorite,
+});
+
+export const removeFromFavorite = (key) => ({
+  type: REMOVE_FROM_FAVORITES,
+  payload: { key },
+});
 
 const loadCurrentWeather = (cityId, dispatch, getState) => {
   const state = getState();

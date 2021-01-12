@@ -1,13 +1,13 @@
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { connect } from "react-redux";
-import { loadSearchCity, loadAllWeather } from "../../redux/actions";
+import { loadSearchCity, setCurrentCityKey } from "../../redux/actions";
 import { cityOptionsSelector } from "../../redux/selectors";
 
 const AutocompleteSearch = ({
   cityOptions,
   loadSearchCity,
-  loadAllWeather,
+  setCurrentCityKey,
 }) => {
   return (
     <Autocomplete
@@ -18,7 +18,7 @@ const AutocompleteSearch = ({
       onInput={(e) => loadSearchCity(e.target.value)}
       onChange={(event, newValue) => {
         if (newValue) {
-          loadAllWeather(newValue.Key);
+          setCurrentCityKey(newValue.Key);
         }
       }}
       renderInput={(params) => (
@@ -39,5 +39,5 @@ export default connect(
   (state) => ({
     cityOptions: cityOptionsSelector(state),
   }),
-  { loadSearchCity, loadAllWeather }
+  { loadSearchCity, setCurrentCityKey }
 )(AutocompleteSearch);

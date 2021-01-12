@@ -7,7 +7,7 @@ const initialState = {
   error: null,
 };
 
-export default (state = initialState, action) => {
+export const searchCity = (state = initialState, action) => {
   const { type, response, error } = action;
   switch (type) {
     case SEARCH_CITY + REQUEST:
