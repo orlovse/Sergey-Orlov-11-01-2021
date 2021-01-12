@@ -35,9 +35,9 @@ export const getLocation = () => (dispatch) => {
   });
 };
 
-export const addFavorite = (newFavorite) => ({
+export const addFavorite = (key) => ({
   type: ADD_TO_FAVORITES,
-  payload: newFavorite,
+  payload: { key },
 });
 
 export const removeFromFavorite = (key) => ({

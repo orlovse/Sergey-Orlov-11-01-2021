@@ -35,16 +35,17 @@ export const localUserOptions = (state = initialState, action) => {
         },
       };
     case ADD_TO_FAVORITES:
-      const { key, newFavorite } = payload;
+      const { key } = payload;
+      console.log("payload", payload);
       return {
         ...state,
         favorites: {
           ...state.favorites,
-          [key]: newFavorite,
+          [key]: true,
         },
       };
     case REMOVE_FROM_FAVORITES:
-      const { ...fields } = payload.favorites;
+      const { ...fields } = state.favorites;
       delete fields[payload.key];
       return {
         ...state,
