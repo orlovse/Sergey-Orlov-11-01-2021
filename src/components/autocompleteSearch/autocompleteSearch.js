@@ -1,24 +1,32 @@
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { connect } from "react-redux";
-import { loadSearchCity, setCurrentCityKey } from "../../redux/actions";
+import {
+  loadSearchCity,
+  setCurrentCityKey,
+  loadAllWeather,
+} from "../../redux/actions";
 import { cityOptionsSelector } from "../../redux/selectors";
 
 const AutocompleteSearch = ({
   cityOptions,
   loadSearchCity,
   setCurrentCityKey,
+  loadAllWeather,
 }) => {
   return (
     <Autocomplete
       style={{ width: 300 }}
-      getOptionSelected={(option, value) => option.LocalizedName === value.name}
+      getOptionSelected={(option, value) =>
+        option.LocalizedName === value.LocalizedName
+      }
       getOptionLabel={(option) => option.LocalizedName}
       options={cityOptions}
       onInput={(e) => loadSearchCity(e.target.value)}
       onChange={(event, newValue) => {
         if (newValue) {
           setCurrentCityKey(newValue.Key);
+          loadAllWeather(newValue.Key);
         }
       }}
       renderInput={(params) => (
@@ -39,5 +47,5 @@ export default connect(
   (state) => ({
     cityOptions: cityOptionsSelector(state),
   }),
-  { loadSearchCity, setCurrentCityKey }
+  { loadSearchCity, setCurrentCityKey, loadAllWeather }
 )(AutocompleteSearch);

@@ -3,10 +3,11 @@ import AutocompleteSearch from "../components/autocompleteSearch";
 import { connect } from "react-redux";
 import { loadAllWeather } from "../redux/actions";
 import { useEffect } from "react";
+import { currentCityKeySelector } from "../redux/selectors";
 
-const Home = ({ loadAllWeather }) => {
+const Home = ({ loadAllWeather, cityKey }) => {
   useEffect(() => {
-    loadAllWeather("id");
+    loadAllWeather(cityKey);
   }, []);
 
   return (
@@ -17,6 +18,11 @@ const Home = ({ loadAllWeather }) => {
   );
 };
 
-export default connect(null, {
-  loadAllWeather,
-})(Home);
+export default connect(
+  (state) => ({
+    cityKey: currentCityKeySelector(state),
+  }),
+  {
+    loadAllWeather,
+  }
+)(Home);

@@ -1,4 +1,3 @@
-import { useSnackbar } from "notistack";
 import styles from "./animatedHeart.module.css";
 import { connect } from "react-redux";
 import {
@@ -15,15 +14,11 @@ const AnimatedHeart = ({
   removeFromFavorite,
   currentWeather,
 }) => {
-  const { enqueueSnackbar } = useSnackbar();
-
   const handleClick = () => {
     if (isFavoriteCity) {
       removeFromFavorite(currentCityKey);
-      enqueueSnackbar("Remove", { variant: "info" });
     } else {
       addFavorite(currentCityKey, currentWeather);
-      enqueueSnackbar("Add", { variant: "success" });
     }
   };
   const style = isFavoriteCity ? styles.active : styles.heart;
