@@ -17,13 +17,13 @@ const AutocompleteSearch = ({
       options={cityOptions}
       onInput={(e) => loadSearchCity(e.target.value)}
       onChange={(event, newValue) => {
-        console.log("onChange:", event, "newValue", newValue.Key);
-        loadAllWeather(newValue.Key);
+        if (newValue) {
+          loadAllWeather(newValue.Key);
+        }
       }}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Asynchronous"
           variant="outlined"
           InputProps={{
             ...params.InputProps,
