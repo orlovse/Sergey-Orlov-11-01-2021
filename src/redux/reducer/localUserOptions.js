@@ -3,23 +3,23 @@ import {
   GET_LOCATION,
   ADD_TO_FAVORITES,
   REMOVE_FROM_FAVORITES,
-  SET_CURRENT_CITY_KEY,
+  SET_CURRENT_CITY,
 } from "../constants";
 
 const initialState = {
   isDark: false,
   currentLocation: null,
-  currentCityKey: "215854",
+  currentCity: { key: "215854", name: "Tel Aviv", country: "Israel" },
   favorites: {},
 };
 
 export const localUserOptions = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case SET_CURRENT_CITY_KEY:
+    case SET_CURRENT_CITY:
       return {
         ...state,
-        currentCityKey: payload.key,
+        currentCity: payload.city,
       };
     case SWITCH_DARK:
       return {

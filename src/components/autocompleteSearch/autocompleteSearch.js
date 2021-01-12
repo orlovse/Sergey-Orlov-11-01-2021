@@ -3,7 +3,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { connect } from "react-redux";
 import {
   loadSearchCity,
-  setCurrentCityKey,
+  setCurrentCity,
   loadAllWeather,
 } from "../../redux/actions";
 import { cityOptionsSelector } from "../../redux/selectors";
@@ -11,7 +11,7 @@ import { cityOptionsSelector } from "../../redux/selectors";
 const AutocompleteSearch = ({
   cityOptions,
   loadSearchCity,
-  setCurrentCityKey,
+  setCurrentCity,
   loadAllWeather,
 }) => {
   return (
@@ -25,7 +25,12 @@ const AutocompleteSearch = ({
       onInput={(e) => loadSearchCity(e.target.value)}
       onChange={(event, newValue) => {
         if (newValue) {
-          setCurrentCityKey(newValue.Key);
+          const city = {
+            key: newValue.Key,
+            name: newValue.LocalizedName,
+            country: newValue.Country.LocalizedName,
+          };
+          setCurrentCity(city);
           loadAllWeather(newValue.Key);
         }
       }}
@@ -47,5 +52,5 @@ export default connect(
   (state) => ({
     cityOptions: cityOptionsSelector(state),
   }),
-  { loadSearchCity, setCurrentCityKey, loadAllWeather }
+  { loadSearchCity, setCurrentCity, loadAllWeather }
 )(AutocompleteSearch);

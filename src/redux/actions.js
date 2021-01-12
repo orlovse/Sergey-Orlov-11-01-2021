@@ -9,7 +9,7 @@ import {
   SEARCH_CITY,
   ADD_TO_FAVORITES,
   REMOVE_FROM_FAVORITES,
-  SET_CURRENT_CITY_KEY,
+  SET_CURRENT_CITY,
 } from "./constants";
 import { currentWeather, fiveDays } from "../mockData";
 import { searchCity } from "../mockData";
@@ -20,9 +20,9 @@ const FIVE_DAYS_URL = process.env.REACT_APP_FIVE_DAYS_URL;
 const AUTOCOMPLETE_SEARCH_URL = process.env.REACT_APP_AUTOCOMPLETE_SEARCH_URL;
 const CURRENT_CONDITIONS_URL = process.env.REACT_APP_CURRENT_CONDITIONS_URL;
 
-export const setCurrentCityKey = (key) => ({
-  type: SET_CURRENT_CITY_KEY,
-  payload: { key },
+export const setCurrentCity = (city) => ({
+  type: SET_CURRENT_CITY,
+  payload: { city },
 });
 
 export const switchDark = (type) => ({
