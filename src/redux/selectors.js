@@ -15,7 +15,6 @@ export const isFavoriteCity = createSelector(
   currentCityKeySelector,
   favoritesSelector,
   (key, favorites) => {
-    console.log("favorites[key]", favorites[key]);
     return !!favorites[key];
   }
 );

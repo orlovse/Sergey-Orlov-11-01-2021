@@ -35,9 +35,9 @@ export const getLocation = () => (dispatch) => {
   });
 };
 
-export const addFavorite = (key) => ({
+export const addFavorite = (key, currentWeather) => ({
   type: ADD_TO_FAVORITES,
-  payload: { key },
+  payload: { key, currentWeather },
 });
 
 export const removeFromFavorite = (key) => ({
@@ -49,7 +49,6 @@ const loadCurrentWeather = (cityId, dispatch, getState) => {
   const state = getState();
   const loading = state.currentWeather.loading;
   const loaded = state.currentWeather.loaded;
-  console.log("stateeee", state, loading);
   if (loading || loaded) return;
   dispatch({ type: LOAD_CURRENT_WEATHER + REQUEST });
   try {
