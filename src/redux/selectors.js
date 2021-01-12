@@ -6,6 +6,7 @@ export const currentLocationSelector = (state) =>
 export const currentWeatherSelector = (state) => state.currentWeather.entities;
 export const fiveDaysWeatherSelector = (state) =>
   state.fiveDaysWeather.entities;
+export const cityOptionsSelector = (state) => state.searchCity.entities;
 
 export const fiveDaysModifiedSelector = createSelector(
   fiveDaysWeatherSelector,

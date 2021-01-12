@@ -6,8 +6,10 @@ import {
   SUCCESS,
   FAILURE,
   LOAD_FIVE_DAYS_WEATHER,
+  SEARCH_CITY,
 } from "./constants";
 import { currentWeather, fiveDays } from "../mockData";
+import { searchCity } from "../mockData";
 
 export const switchDark = (type) => ({
   type: SWITCH_DARK,
@@ -25,10 +27,11 @@ export const getLocation = () => (dispatch) => {
   });
 };
 
-export const loadCurrentWeather = (cityId) => async (dispatch, getState) => {
+const loadCurrentWeather = (cityId, dispatch, getState) => {
   const state = getState();
-  const loading = state.loading;
-  const loaded = state.loaded;
+  const loading = state.currentWeather.loading;
+  const loaded = state.currentWeather.loaded;
+  console.log("stateeee", state, loading);
   if (loading || loaded) return;
   dispatch({ type: LOAD_CURRENT_WEATHER + REQUEST });
   try {
@@ -40,10 +43,10 @@ export const loadCurrentWeather = (cityId) => async (dispatch, getState) => {
   }
 };
 
-export const loadFiveDaysWeather = (cityId) => async (dispatch, getState) => {
+const loadFiveDaysWeather = (cityId, dispatch, getState) => {
   const state = getState();
-  const loading = state.loading;
-  const loaded = state.loaded;
+  const loading = state.fiveDaysWeather.loading;
+  const loaded = state.fiveDaysWeather.loaded;
   if (loading || loaded) return;
   dispatch({ type: LOAD_FIVE_DAYS_WEATHER + REQUEST });
   try {
@@ -51,6 +54,26 @@ export const loadFiveDaysWeather = (cityId) => async (dispatch, getState) => {
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + FAILURE, error });
+    //TODO need toaster or dispatch to error page
+  }
+};
+
+export const loadAllWeather = (cityId) => async (dispatch, getState) => {
+  loadCurrentWeather(cityId, dispatch, getState);
+  loadFiveDaysWeather(cityId, dispatch, getState);
+};
+
+export const loadSearchCity = (name) => (dispatch, getState) => {
+  const state = getState();
+  const loading = state.loading;
+  const loaded = state.loaded;
+  if (loading || loaded) return;
+  dispatch({ type: SEARCH_CITY + REQUEST });
+  try {
+    const response = searchCity;
+    dispatch({ type: SEARCH_CITY + SUCCESS, response });
+  } catch (error) {
+    dispatch({ type: SEARCH_CITY + FAILURE, error });
     //TODO need toaster or dispatch to error page
   }
 };

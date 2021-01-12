@@ -1,5 +1,6 @@
 export const SWITCH_DARK = "SWITCH_DARK";
 export const GET_LOCATION = "GET_LOCATION";
+export const SEARCH_CITY = "SEARCH_CITY";
 export const LOAD_CURRENT_WEATHER = "LOAD_CURRENT_WEATHER";
 export const LOAD_FIVE_DAYS_WEATHER = "LOAD_FIVE_DAYS_WEATHER";
 export const SUCCESS = "_SUCCESS";
