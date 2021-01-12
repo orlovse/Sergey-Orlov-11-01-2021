@@ -1,0 +1,27 @@
+.heart {
+  width: 100px;
+  height: 100px;
+  background: url(../../resources/png/heart.png) no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+}
+
+.active {
+  width: 100px;
+  height: 100px;
+  background: url(../../resources/png/heart.png) no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  animation: fave-heart 1s steps(28);
+  animation-fill-mode: forwards;
+}
+
+@keyframes fave-heart {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -2800px 0;
+  }
+}

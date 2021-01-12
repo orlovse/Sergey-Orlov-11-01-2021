@@ -7,6 +7,7 @@ import {
   fiveDaysModifiedSelector,
 } from "../../redux/selectors";
 import CurrentWeatherCard from "../currentWeatherCard";
+import AnimatedHeart from "../animatedHeart";
 
 const MainContainer = ({ currentWeather, fiveDaysWeather }) => {
   if (Object.keys(currentWeather) > 1 && fiveDaysWeather.length < 1)
@@ -21,7 +22,14 @@ const MainContainer = ({ currentWeather, fiveDaysWeather }) => {
 
   return (
     <Box className={styles.box}>
-      <CurrentWeatherCard weatherIcon={WeatherIcon} temperature={Temperature} />
+      <Grid container direction="row" justify="space-between">
+        <CurrentWeatherCard
+          weatherIcon={WeatherIcon}
+          temperature={Temperature}
+        />
+        <AnimatedHeart />
+      </Grid>
+
       <h2>{WeatherText}</h2>
       <Grid container justify="space-between">
         {cardsList}
