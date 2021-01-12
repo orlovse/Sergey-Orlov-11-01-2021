@@ -1,8 +1,8 @@
 import { createSelector } from "reselect";
 
-export const darkThemeSelector = (state) => state.theme.isDark;
+export const darkThemeSelector = (state) => state.localUserOptions.isDark;
 export const currentLocationSelector = (state) =>
-  state.locations.currentLocation;
+  state.localUserOptions.currentLocation;
 export const currentWeatherSelector = (state) => state.currentWeather.entities;
 export const fiveDaysWeatherSelector = (state) =>
   state.fiveDaysWeather.entities;

@@ -1,14 +1,12 @@
 import { combineReducers } from "redux";
 
-import theme from "./theme";
-import locations from "./locations";
 import currentWeather from "./currenWeather";
 import fiveDaysWeather from "./fiveDaysWeather";
 import searchCity from "./searchCity";
+import localUserOptions from "./localUserOptions";
 
 export default combineReducers({
-  theme,
-  locations,
+  localUserOptions,
   searchCity,
   currentWeather,
   fiveDaysWeather,

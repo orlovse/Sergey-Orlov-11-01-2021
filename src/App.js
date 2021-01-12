@@ -23,7 +23,7 @@ function App({ isDarkTheme, getLocation }) {
     <ThemeProvider theme={currentTheme}>
       <div className="App">
         <Navbar />
-        <Paper className="box">
+        <Paper className="box" square>
           <Container>
             <Grid
               container
