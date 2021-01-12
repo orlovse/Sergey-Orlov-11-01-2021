@@ -6,8 +6,8 @@ import styles from "./weatherCard.module.css";
 const WeatherCard = () => {
   const icon = getIcon(3);
   return (
-    <>
-      <Card className={styles.card}>
+    <div className={styles.wrapper}>
+      <div className={styles.card}>
         <CardContent>
           <Grid
             container
@@ -21,8 +21,8 @@ const WeatherCard = () => {
             <div>24 C</div>
           </Grid>
         </CardContent>
-      </Card>
-    </>
+      </div>
+    </div>
   );
 };
 

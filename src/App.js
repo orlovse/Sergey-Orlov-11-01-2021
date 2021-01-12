@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Container, Box, Grid } from "@material-ui/core";
+import { Container, Box, Grid, Paper } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { lightTheme, darkTheme } from "./theme";
 import { darkThemeSelector } from "./redux/selectors";
@@ -23,9 +23,14 @@ function App({ isDarkTheme, getLocation }) {
     <ThemeProvider theme={currentTheme}>
       <div className="App">
         <Navbar />
-        <Box bgcolor="secondary.main" className="box">
+        <Paper className="box">
           <Container>
-            <Grid container justify="center">
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/favorites" component={Favorites} />
@@ -33,7 +38,7 @@ function App({ isDarkTheme, getLocation }) {
               </Switch>
             </Grid>
           </Container>
-        </Box>
+        </Paper>
       </div>
     </ThemeProvider>
   );

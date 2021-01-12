@@ -1,6 +1,8 @@
 import WeatherCard from "../weatherCard";
 import { fiveDays } from "../../mockData";
-import { Grid } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
+import styles from "./mainContainer.module.css";
+
 const MainContainer = () => {
   const cardsList = fiveDays.DailyForecasts.map((day) => (
     <Grid item xs key={day.Date}>
@@ -9,11 +11,11 @@ const MainContainer = () => {
   ));
 
   return (
-    <>
-      <Grid container justify="space-between" spacing={3}>
+    <Box className={styles.box}>
+      <Grid container justify="space-between">
         {cardsList}
       </Grid>
-    </>
+    </Box>
   );
 };
 
