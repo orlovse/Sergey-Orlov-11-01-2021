@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  overscroll-behavior: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -25,4 +26,8 @@ code {
 .light-wrapper {
   background: rgb(255, 246, 199);
   background: linear-gradient(298deg, rgba(255, 246, 199, 1) 0%, rgba(176, 183, 255, 1) 100%);
+}
+
+.box-padding {
+  padding: 12px;
 }

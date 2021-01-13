@@ -1,6 +1,5 @@
 import WeatherCard from "../weatherCard";
 import { Grid, Box } from "@material-ui/core";
-import styles from "./mainContainer.module.css";
 import { connect } from "react-redux";
 import {
   currentWeatherSelector,
@@ -16,22 +15,22 @@ const MainContainer = ({ currentWeather, fiveDaysWeather, currentCity }) => {
 
   const { WeatherText, WeatherIcon, Temperature } = currentWeather;
   const cardsList = fiveDaysWeather.map((weatherData) => (
-    <Grid item xs key={weatherData.date}>
+    <Grid item xs={12} md="auto" key={weatherData.date}>
       <WeatherCard weatherData={weatherData} />
     </Grid>
   ));
 
   return (
-    <Box className={styles.box}>
+    <Box className="box-padding">
       <Grid container direction="row" justify="space-between">
         <CurrentWeatherCard
           weatherIcon={WeatherIcon}
           temperature={Temperature}
           currentCity={currentCity}
         />
+
         <AnimatedHeart />
       </Grid>
-
       <h2>{WeatherText}</h2>
       <Grid container justify="space-between">
         {cardsList}

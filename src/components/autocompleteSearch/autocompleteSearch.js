@@ -7,6 +7,7 @@ import {
   loadAllWeather,
 } from "../../redux/actions";
 import { cityOptionsSelector } from "../../redux/selectors";
+import { Box } from "@material-ui/core";
 
 const AutocompleteSearch = ({
   cityOptions,
@@ -15,36 +16,38 @@ const AutocompleteSearch = ({
   loadAllWeather,
 }) => {
   return (
-    <Autocomplete
-      style={{ width: 300 }}
-      getOptionSelected={(option, value) =>
-        option.LocalizedName === value.LocalizedName
-      }
-      getOptionLabel={(option) => option.LocalizedName}
-      options={cityOptions}
-      onInput={(e) => loadSearchCity(e.target.value)}
-      onChange={(event, newValue) => {
-        if (newValue) {
-          const city = {
-            key: newValue.Key,
-            name: newValue.LocalizedName,
-            country: newValue.Country.LocalizedName,
-          };
-          setCurrentCity(city);
-          loadAllWeather(newValue.Key);
+    <Box className="box-padding">
+      <Autocomplete
+        style={{ maxWidth: 400, margin: "0 auto" }}
+        getOptionSelected={(option, value) =>
+          option.LocalizedName === value.LocalizedName
         }
-      }}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          variant="outlined"
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: <>{params.InputProps.endAdornment}</>,
-          }}
-        />
-      )}
-    />
+        getOptionLabel={(option) => option.LocalizedName}
+        options={cityOptions}
+        onInput={(e) => loadSearchCity(e.target.value)}
+        onChange={(event, newValue) => {
+          if (newValue) {
+            const city = {
+              key: newValue.Key,
+              name: newValue.LocalizedName,
+              country: newValue.Country.LocalizedName,
+            };
+            setCurrentCity(city);
+            loadAllWeather(newValue.Key);
+          }
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="outlined"
+            InputProps={{
+              ...params.InputProps,
+              endAdornment: <>{params.InputProps.endAdornment}</>,
+            }}
+          />
+        )}
+      />
+    </Box>
   );
 };
 
