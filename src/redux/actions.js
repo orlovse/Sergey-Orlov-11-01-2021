@@ -23,6 +23,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 const FIVE_DAYS_URL = process.env.REACT_APP_FIVE_DAYS_URL;
 const AUTOCOMPLETE_SEARCH_URL = process.env.REACT_APP_AUTOCOMPLETE_SEARCH_URL;
 const CURRENT_CONDITIONS_URL = process.env.REACT_APP_CURRENT_CONDITIONS_URL;
+const GEOPOSITION_URL = process.env.REACT_APP_GEOPOSITION_URL;
 
 export const setCurrentCity = (city) => ({
   type: SET_CURRENT_CITY,
@@ -65,7 +66,7 @@ const loadCityByGeolocation = async (coords, dispatch, getState) => {
   try {
     const response = searchCity;
     // const response = await fetch(
-    //   `${BASE_URL}/locations/v1/cities/geoposition/search?apikey=${API_KEY}&q=${coords.latitude},${coords.longitude}`
+    //   `${BASE_URL}/${GEOPOSITION_URL}?apikey=${API_KEY}&q=${coords.latitude},${coords.longitude}`
     // ).then((res) => res.json());
     dispatch({ type: LOAD_CITY_BY_GEOLOCATION + SUCCESS, response });
     const city = {
@@ -130,7 +131,7 @@ const loadFiveDaysWeather = async (cityId, dispatch, getState) => {
   try {
     const response = fiveDays;
     // const response = await fetch(
-    //   `${BASE_URL}${FIVE_DAYS_URL}/${cityId}?apikey=${API_KEY}`
+    //   `${BASE_URL}${FIVE_DAYS_URL}/${cityId}?apikey=${API_KEY}&metric=true`
     // ).then((res) => res.json());
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + SUCCESS, response });
   } catch (error) {

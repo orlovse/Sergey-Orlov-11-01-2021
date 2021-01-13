@@ -44,6 +44,21 @@ export const searchCity = [
       LocalizedName: "Tel Aviv",
     },
   },
+  {
+    Version: 1,
+    Key: "215858",
+    Type: "City",
+    Rank: 31,
+    LocalizedName: "New City ",
+    Country: {
+      ID: "IL",
+      LocalizedName: "Israel",
+    },
+    AdministrativeArea: {
+      ID: "TA",
+      LocalizedName: "Tel Aviv",
+    },
+  },
 ];
 
 export const fiveDays = {
