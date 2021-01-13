@@ -4,7 +4,7 @@ import { favoritesSelector } from "../redux/selectors";
 
 const Favorites = ({ favorites }) => {
   const favoritesList = Object.keys(favorites).map((key) => (
-    <FavoriteCard key={key} favoriteWeather={favorites[key]} />
+    <FavoriteCard key={key} currentKey={key} favoriteWeather={favorites[key]} />
   ));
   return <div>{favoritesList}</div>;
 };

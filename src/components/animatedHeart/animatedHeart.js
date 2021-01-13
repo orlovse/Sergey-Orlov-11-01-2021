@@ -1,24 +1,26 @@
 import styles from "./animatedHeart.module.css";
 import { connect } from "react-redux";
 import {
-  isFavoriteCity,
-  currentCityKeySelector,
+  favoritesSelector,
   currentWeatherSelector,
+  currentCityNameSelector,
 } from "../../redux/selectors";
 import { addFavorite, removeFromFavorite } from "../../redux/actions";
 
 const AnimatedHeart = ({
   addFavorite,
-  isFavoriteCity,
   currentCityKey,
+  currentCityName,
   removeFromFavorite,
   currentWeather,
+  favorites,
 }) => {
+  const isFavoriteCity = !!favorites[currentCityKey];
   const handleClick = () => {
     if (isFavoriteCity) {
       removeFromFavorite(currentCityKey);
     } else {
-      addFavorite(currentCityKey, currentWeather);
+      addFavorite(currentCityKey, currentCityName, currentWeather);
     }
   };
   const style = isFavoriteCity ? styles.active : styles.heart;
@@ -27,9 +29,9 @@ const AnimatedHeart = ({
 
 export default connect(
   (state) => ({
-    isFavoriteCity: isFavoriteCity(state),
-    currentCityKey: currentCityKeySelector(state),
+    currentCityName: currentCityNameSelector(state),
     currentWeather: currentWeatherSelector(state),
+    favorites: favoritesSelector(state),
   }),
   { addFavorite, removeFromFavorite }
 )(AnimatedHeart);

@@ -11,22 +11,16 @@ export const currentCityNameSelector = createSelector(
   (city) => city.name
 );
 export const darkThemeSelector = (state) => state.localUserOptions.isDark;
-export const celsiusSelector = (state) => state.localUserOptions.isCelsius;
+export const fahrenheitSelector = (state) =>
+  state.localUserOptions.isFahrenheit;
 export const currentLocationSelector = (state) =>
   state.localUserOptions.currentLocation;
 export const favoritesSelector = (state) => state.localUserOptions.favorites;
 export const currentWeatherSelector = (state) => state.currentWeather.entities;
 export const fiveDaysWeatherSelector = (state) =>
   state.fiveDaysWeather.entities;
-export const cityOptionsSelector = (state) => state.searchCity.entities;
 
-export const isFavoriteCity = createSelector(
-  currentCityKeySelector,
-  favoritesSelector,
-  (key, favorites) => {
-    return !!favorites[key];
-  }
-);
+export const cityOptionsSelector = (state) => state.searchCity.entities;
 
 export const fiveDaysModifiedSelector = createSelector(
   fiveDaysWeatherSelector,

@@ -14,6 +14,36 @@ export const searchCity = [
       LocalizedName: "Tel Aviv",
     },
   },
+  {
+    Version: 1,
+    Key: "215855",
+    Type: "City",
+    Rank: 31,
+    LocalizedName: "Test City",
+    Country: {
+      ID: "IL",
+      LocalizedName: "Israel",
+    },
+    AdministrativeArea: {
+      ID: "TA",
+      LocalizedName: "Tel Aviv",
+    },
+  },
+  {
+    Version: 1,
+    Key: "215856",
+    Type: "City",
+    Rank: 31,
+    LocalizedName: "Mock City ",
+    Country: {
+      ID: "IL",
+      LocalizedName: "Israel",
+    },
+    AdministrativeArea: {
+      ID: "TA",
+      LocalizedName: "Tel Aviv",
+    },
+  },
 ];
 
 export const fiveDays = {

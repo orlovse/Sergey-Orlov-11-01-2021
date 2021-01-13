@@ -29,6 +29,10 @@ export const loadFromLocalStorage = (key) => {
 
 export const saveToLocalStorage = (key, value) => {
   try {
+    if (value.toString() === "[object Object]") {
+      const valueFromLocalStorage = loadFromLocalStorage(key);
+      value = { ...valueFromLocalStorage, ...value };
+    }
     const serialisedState = JSON.stringify(value);
     localStorage.setItem(key, serialisedState);
   } catch (e) {

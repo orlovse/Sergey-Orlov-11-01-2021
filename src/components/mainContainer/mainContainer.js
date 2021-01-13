@@ -5,17 +5,23 @@ import {
   currentWeatherSelector,
   fiveDaysModifiedSelector,
   currentCitySelector,
+  currentCityKeySelector,
 } from "../../redux/selectors";
 import CurrentWeatherCard from "../currentWeatherCard";
 import AnimatedHeart from "../animatedHeart";
 
-const MainContainer = ({ currentWeather, fiveDaysWeather, currentCity }) => {
+const MainContainer = ({
+  currentWeather,
+  fiveDaysWeather,
+  currentCity,
+  currentCityKey,
+}) => {
   if (Object.keys(currentWeather) > 1 && fiveDaysWeather.length < 1)
     return <div>Loading...</div>;
 
   const { WeatherText, WeatherIcon, Temperature } = currentWeather;
   const cardsList = fiveDaysWeather.map((weatherData) => (
-    <Grid item xs={12} md="auto" key={weatherData.date}>
+    <Grid item xs={12} md={6} lg="auto" key={weatherData.date}>
       <WeatherCard weatherData={weatherData} />
     </Grid>
   ));
@@ -29,7 +35,7 @@ const MainContainer = ({ currentWeather, fiveDaysWeather, currentCity }) => {
           currentCity={currentCity}
         />
 
-        <AnimatedHeart />
+        <AnimatedHeart currentCityKey={currentCityKey} />
       </Grid>
       <h2>{WeatherText}</h2>
       <Grid container justify="space-between">
@@ -43,4 +49,5 @@ export default connect((state) => ({
   currentWeather: currentWeatherSelector(state),
   fiveDaysWeather: fiveDaysModifiedSelector(state),
   currentCity: currentCitySelector(state),
+  currentCityKey: currentCityKeySelector(state),
 }))(MainContainer);

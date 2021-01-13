@@ -1,7 +1,8 @@
 .link {
+  display: inline-block;
   text-decoration: none;
 }
 
 .active {
-  background-color: rgba(101, 83, 255, 0.425);
+  background-color: rgba(158, 147, 255, 0.425);
 }

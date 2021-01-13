@@ -1,6 +1,6 @@
 import {
   SWITCH_DARK,
-  SWITCH_CELSIUS,
+  SWITCH_FAHRENHEIT,
   GET_LOCATION,
   ADD_TO_FAVORITES,
   REMOVE_FROM_FAVORITES,
@@ -11,7 +11,7 @@ import { loadFromLocalStorage } from "../../utils";
 
 const initialState = {
   isDark: loadFromLocalStorage("isDark") || false,
-  isCelsius: loadFromLocalStorage("isCelsius") || true,
+  isFahrenheit: loadFromLocalStorage("isFahrenheit") || false,
   currentLocation: null,
   currentCity: { key: "215854", name: "Tel Aviv", country: "Israel" },
   favorites: loadFromLocalStorage("favorites") || {},
@@ -30,10 +30,10 @@ export const localUserOptions = (state = initialState, action) => {
         ...state,
         isDark: payload.isDark,
       };
-    case SWITCH_CELSIUS:
+    case SWITCH_FAHRENHEIT:
       return {
         ...state,
-        isCelsius: payload.isCelsius,
+        isFahrenheit: payload.isFahrenheit,
       };
     case GET_LOCATION:
       return {
