@@ -11,6 +11,7 @@ import {
   REMOVE_FROM_FAVORITES,
   SET_CURRENT_CITY,
   SWITCH_FAHRENHEIT,
+  LOAD_CITY_BY_GEOLOCATION,
 } from "./constants";
 import { currentWeather, fiveDays } from "../mockData";
 import { searchCity } from "../mockData";
@@ -44,15 +45,40 @@ export const switchFahrenheit = (type) => (dispatch) => {
   });
 };
 
-export const getLocation = () => (dispatch) => {
+export const getLocation = () => async (dispatch, getState) => {
   const geolocation = navigator.geolocation;
   geolocation.getCurrentPosition((position) => {
-    console.log(position.coords);
     dispatch({
       type: GET_LOCATION,
       payload: { position },
     });
+    loadCityByGeolocation(position.coords, dispatch, getState);
   });
+};
+
+const loadCityByGeolocation = async (coords, dispatch, getState) => {
+  const state = getState();
+  const loading = state.cityByGeolocation.loading;
+  const loaded = state.cityByGeolocation.loaded;
+  if (loading || loaded) return;
+  dispatch({ type: LOAD_CITY_BY_GEOLOCATION + REQUEST });
+  try {
+    const response = searchCity;
+    // const response = await fetch(
+    //   `${BASE_URL}/locations/v1/cities/geoposition/search?apikey=${API_KEY}&q=${coords.latitude},${coords.longitude}`
+    // ).then((res) => res.json());
+    dispatch({ type: LOAD_CITY_BY_GEOLOCATION + SUCCESS, response });
+    const city = {
+      key: response.Key,
+      name: response.LocalizedName,
+      country: response.Country.LocalizedName,
+    };
+    // setCurrentCity(city);
+    dispatch({ type: SET_CURRENT_CITY, payload: { city } });
+  } catch (error) {
+    dispatch({ type: LOAD_CITY_BY_GEOLOCATION + FAILURE, error });
+    //TODO need toaster or dispatch to error page
+  }
 };
 
 export const addFavorite = (key, currentCityName, currentWeather) => (
@@ -135,5 +161,3 @@ export const loadSearchCity = (name) => async (dispatch, getState) => {
     //TODO need toaster or dispatch to error page
   }
 };
-
-// `${LOCATIONS_BASE_URL}/cities/geoposition/search?apikey=${API_KEY}&q=${position.coords.latitude},${position.coords.longitude}`

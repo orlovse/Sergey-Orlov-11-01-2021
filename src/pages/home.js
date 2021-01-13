@@ -10,7 +10,7 @@ import { currentCityKeySelector } from "../redux/selectors";
 const Home = ({ loadAllWeather, cityKey }) => {
   useEffect(() => {
     loadAllWeather(cityKey);
-  }, []);
+  }, [cityKey, loadAllWeather]);
 
   return (
     <>
