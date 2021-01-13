@@ -11,6 +11,7 @@ export const currentCityNameSelector = createSelector(
   (city) => city.name
 );
 export const darkThemeSelector = (state) => state.localUserOptions.isDark;
+export const celsiusSelector = (state) => state.localUserOptions.isCelsius;
 export const currentLocationSelector = (state) =>
   state.localUserOptions.currentLocation;
 export const favoritesSelector = (state) => state.localUserOptions.favorites;

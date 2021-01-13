@@ -10,6 +10,7 @@ import {
   ADD_TO_FAVORITES,
   REMOVE_FROM_FAVORITES,
   SET_CURRENT_CITY,
+  SWITCH_CELSIUS,
 } from "./constants";
 import { currentWeather, fiveDays } from "../mockData";
 import { searchCity } from "../mockData";
@@ -32,6 +33,14 @@ export const switchDark = (type) => (dispatch) => {
   dispatch({
     type: SWITCH_DARK,
     payload: { isDark: type },
+  });
+};
+
+export const switchCelsuis = (type) => (dispatch) => {
+  saveToLocalStorage("isCelsius", type);
+  dispatch({
+    type: SWITCH_CELSIUS,
+    payload: { isCelsius: type },
   });
 };
 
