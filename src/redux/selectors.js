@@ -6,6 +6,10 @@ export const currentCityKeySelector = createSelector(
   currentCitySelector,
   (city) => city.key
 );
+export const currentCityNameSelector = createSelector(
+  currentCitySelector,
+  (city) => city.name
+);
 export const darkThemeSelector = (state) => state.localUserOptions.isDark;
 export const currentLocationSelector = (state) =>
   state.localUserOptions.currentLocation;

@@ -46,11 +46,13 @@ export const getLocation = () => (dispatch) => {
   });
 };
 
-export const addFavorite = (key, currentWeather) => (dispatch) => {
+export const addFavorite = (key, currentCityName, currentWeather) => (
+  dispatch
+) => {
   saveToLocalStorage("favorites", { key });
   dispatch({
     type: ADD_TO_FAVORITES,
-    payload: { key, currentWeather },
+    payload: { key, currentCityName, currentWeather },
   });
 };
 
