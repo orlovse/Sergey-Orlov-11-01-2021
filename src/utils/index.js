@@ -35,3 +35,18 @@ export const saveToLocalStorage = (key, value) => {
     console.warn(e);
   }
 };
+
+export const removeFromLocalStorage = (key) => {
+  try {
+    const favorites = loadFromLocalStorage("favorites");
+    delete favorites[key];
+    const newFavorites = JSON.stringify(favorites);
+    localStorage.setItem("favorites", newFavorites);
+  } catch (e) {
+    console.warn(e);
+  }
+};
+
+export const celsiusToFahrenheit = (num) => {
+  return Math.floor((num * 9) / 5 + 32);
+};

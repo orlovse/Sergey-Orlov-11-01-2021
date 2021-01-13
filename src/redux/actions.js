@@ -15,7 +15,7 @@ import {
 import { currentWeather, fiveDays } from "../mockData";
 import { searchCity } from "../mockData";
 
-import { saveToLocalStorage } from "../utils";
+import { saveToLocalStorage, removeFromLocalStorage } from "../utils";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -58,17 +58,22 @@ export const getLocation = () => (dispatch) => {
 export const addFavorite = (key, currentCityName, currentWeather) => (
   dispatch
 ) => {
-  saveToLocalStorage("favorites", { key });
+  saveToLocalStorage("favorites", {
+    [key]: { currentCityName, currentWeather },
+  });
   dispatch({
     type: ADD_TO_FAVORITES,
     payload: { key, currentCityName, currentWeather },
   });
 };
 
-export const removeFromFavorite = (key) => ({
-  type: REMOVE_FROM_FAVORITES,
-  payload: { key },
-});
+export const removeFromFavorite = (key) => (dispatch) => {
+  removeFromLocalStorage(key);
+  dispatch({
+    type: REMOVE_FROM_FAVORITES,
+    payload: { key },
+  });
+};
 
 const loadCurrentWeather = async (cityId, dispatch, getState) => {
   const state = getState();
@@ -109,7 +114,6 @@ const loadFiveDaysWeather = async (cityId, dispatch, getState) => {
 };
 
 export const loadAllWeather = (cityId) => async (dispatch, getState) => {
-  console.log("test");
   loadCurrentWeather(cityId, dispatch, getState);
   loadFiveDaysWeather(cityId, dispatch, getState);
 };

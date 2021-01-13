@@ -14,7 +14,7 @@ const initialState = {
   isCelsius: loadFromLocalStorage("isCelsius") || true,
   currentLocation: null,
   currentCity: { key: "215854", name: "Tel Aviv", country: "Israel" },
-  favorites: {},
+  favorites: loadFromLocalStorage("favorites") || {},
 };
 
 export const localUserOptions = (state = initialState, action) => {
