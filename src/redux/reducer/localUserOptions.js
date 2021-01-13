@@ -6,8 +6,10 @@ import {
   SET_CURRENT_CITY,
 } from "../constants";
 
+import { loadFromLocalStorage } from "../../utils";
+
 const initialState = {
-  isDark: false,
+  isDark: loadFromLocalStorage("isDark") || false,
   currentLocation: null,
   currentCity: { key: "215854", name: "Tel Aviv", country: "Israel" },
   favorites: {},

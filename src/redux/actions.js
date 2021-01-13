@@ -14,6 +14,8 @@ import {
 import { currentWeather, fiveDays } from "../mockData";
 import { searchCity } from "../mockData";
 
+import { saveToLocalStorage } from "../utils";
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const FIVE_DAYS_URL = process.env.REACT_APP_FIVE_DAYS_URL;
@@ -25,10 +27,13 @@ export const setCurrentCity = (city) => ({
   payload: { city },
 });
 
-export const switchDark = (type) => ({
-  type: SWITCH_DARK,
-  payload: { isDark: type },
-});
+export const switchDark = (type) => (dispatch) => {
+  saveToLocalStorage("isDark", type);
+  dispatch({
+    type: SWITCH_DARK,
+    payload: { isDark: type },
+  });
+};
 
 export const getLocation = () => (dispatch) => {
   const geolocation = navigator.geolocation;
@@ -41,10 +46,13 @@ export const getLocation = () => (dispatch) => {
   });
 };
 
-export const addFavorite = (key, currentWeather) => ({
-  type: ADD_TO_FAVORITES,
-  payload: { key, currentWeather },
-});
+export const addFavorite = (key, currentWeather) => (dispatch) => {
+  saveToLocalStorage("favorites", { key });
+  dispatch({
+    type: ADD_TO_FAVORITES,
+    payload: { key, currentWeather },
+  });
+};
 
 export const removeFromFavorite = (key) => ({
   type: REMOVE_FROM_FAVORITES,
@@ -112,3 +120,5 @@ export const loadSearchCity = (name) => async (dispatch, getState) => {
     //TODO need toaster or dispatch to error page
   }
 };
+
+// `${LOCATIONS_BASE_URL}/cities/geoposition/search?apikey=${API_KEY}&q=${position.coords.latitude},${position.coords.longitude}`
