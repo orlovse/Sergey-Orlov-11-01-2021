@@ -38,7 +38,7 @@ const Navbar = ({
       className={styles.link}
       activeClassName={styles.active}
     >
-      <Button>{name}</Button>
+      <Button color="secondary">{name}</Button>
     </NavLink>
   ));
 

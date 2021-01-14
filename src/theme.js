@@ -7,7 +7,7 @@ export const darkTheme = createMuiTheme({
       main: "#01579b",
     },
     secondary: {
-      main: "#0083e7",
+      main: "#ecf9ff",
     },
   },
 
@@ -15,7 +15,7 @@ export const darkTheme = createMuiTheme({
     MuiPaper: {
       root: {
         background:
-          "linear-gradient(90deg, rgba(0,63,119,1) 0%, rgba(105,161,227,1) 100%)",
+          "linear-gradient(90deg, rgba(0,37,70,1) 0%, rgba(74,119,171,1) 100%)",
       },
     },
   },
@@ -29,13 +29,16 @@ export const lightTheme = createMuiTheme({
     secondary: {
       main: "#ecf9ff",
     },
+    text: {
+      primary: "#373738",
+    },
   },
 
   overrides: {
     MuiPaper: {
       root: {
         background:
-          "linear-gradient(298deg, rgba(255, 246, 199, 1) 0%, rgba(176, 183, 255, 1) 100%)",
+          " linear-gradient(337deg, rgba(58,168,255,1) 15%, rgba(155,204,255,1) 79%, rgba(255,225,160,1) 99%)",
       },
     },
   },

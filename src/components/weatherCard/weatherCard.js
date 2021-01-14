@@ -7,6 +7,15 @@ import { getIcon } from "../../utils/icons";
 import styles from "./weatherCard.module.css";
 import { fahrenheitSelector } from "../../redux/selectors";
 import { celsiusToFahrenheit } from "../../utils";
+import { useSpring, animated } from "react-spring";
+
+const calc = (x, y) => [
+  -(y - window.innerHeight / 2) / 20,
+  (x - window.innerWidth / 2) / 20,
+  1.1,
+];
+const trans = (x, y, s) =>
+  `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
 const WeatherCard = ({ weatherData, isFahrenheit }) => {
   const icon = get(weatherData, "icon", null);
@@ -27,8 +36,19 @@ const WeatherCard = ({ weatherData, isFahrenheit }) => {
   ) : (
     <Skeleton variant="circle" width={80} height={80} />
   );
+
+  const [props, set] = useSpring(() => ({
+    xys: [0, 0, 1],
+    config: { mass: 5, tension: 350, friction: 40 },
+  }));
+
   return (
-    <div className={styles.card}>
+    <animated.div
+      className={styles.card}
+      onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+      onMouseLeave={() => set({ xys: [0, 0, 1] })}
+      style={{ transform: props.xys.interpolate(trans) }}
+    >
       <Grid container direction="column" alignItems="center">
         {img}
         <div className={styles.text}>{weekday || <Skeleton width={120} />}</div>
@@ -37,7 +57,7 @@ const WeatherCard = ({ weatherData, isFahrenheit }) => {
           {stringTemperature || <Skeleton width={120} />}
         </div>
       </Grid>
-    </div>
+    </animated.div>
   );
 };
 

@@ -16,6 +16,7 @@ code {
 .box {
   min-height: calc(100vh - 64px);
   height: 100%;
+  padding-bottom: 4rem;
 }
 
 .dark-wrapper {
