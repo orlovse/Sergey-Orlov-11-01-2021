@@ -1,21 +1,29 @@
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import { Button, Grid, Switch } from "@material-ui/core";
+import { AppBar, Button, Grid, IconButton, Toolbar } from "@material-ui/core";
 import styles from "./navbar.module.css";
 import { darkThemeSelector, fahrenheitSelector } from "../../redux/selectors";
 import { switchDark, switchFahrenheit } from "../../redux/actions";
 
-const Navbar = ({ darkTheme, switchDark, isFahrenheit, switchFahrenheit }) => {
+import darkIcon from "../../resources/svg/dark.svg";
+import lightIcon from "../../resources/svg/light.svg";
+import celsiusIcon from "../../resources/svg/celsius.svg";
+import fahrenheitIcon from "../../resources/svg/fahrenheit.svg";
+
+const Navbar = ({
+  isDarkTheme,
+  switchDark,
+  isFahrenheit,
+  switchFahrenheit,
+}) => {
   const links = [
     { id: 1, name: "Home", link: "/" },
     { id: 2, name: "Favorites", link: "/favorites" },
   ];
 
   const handleSwitchTheme = () => {
-    switchDark(!darkTheme);
+    switchDark(!isDarkTheme);
   };
 
   const handleSwitchFahrenheit = () => {
@@ -40,21 +48,32 @@ const Navbar = ({ darkTheme, switchDark, isFahrenheit, switchFahrenheit }) => {
         <Toolbar>
           <Grid container justify="space-between">
             <div>
-              <Switch
-                checked={darkTheme}
-                onChange={handleSwitchTheme}
-                name="checkedA"
-                inputProps={{ "aria-label": "secondary checkbox" }}
-              />
-              <Switch
-                checked={isFahrenheit}
-                onChange={handleSwitchFahrenheit}
-                name="checkedB"
-                inputProps={{ "aria-label": "secondary checkbox" }}
-              />
+              <IconButton onClick={handleSwitchTheme}>
+                {isDarkTheme ? (
+                  <img src={darkIcon} alt="dark theme icon"></img>
+                ) : (
+                  <img src={lightIcon} alt="light theme icon"></img>
+                )}
+              </IconButton>
+
+              <IconButton onClick={handleSwitchFahrenheit}>
+                {isFahrenheit ? (
+                  <img
+                    src={fahrenheitIcon}
+                    width="30px"
+                    alt="dark theme icon"
+                  ></img>
+                ) : (
+                  <img
+                    src={celsiusIcon}
+                    width="30px"
+                    alt="light theme icon"
+                  ></img>
+                )}
+              </IconButton>
             </div>
 
-            <div>{renderLinks}</div>
+            <div className={styles.links}>{renderLinks}</div>
           </Grid>
         </Toolbar>
       </AppBar>
@@ -63,13 +82,15 @@ const Navbar = ({ darkTheme, switchDark, isFahrenheit, switchFahrenheit }) => {
 };
 
 Navbar.propTypes = {
-  darkTheme: PropTypes.bool,
-  switchDark: PropTypes.func,
+  isDarkTheme: PropTypes.bool.isRequired,
+  isFahrenheit: PropTypes.bool.isRequired,
+  switchDark: PropTypes.func.isRequired,
+  switchFahrenheit: PropTypes.func.isRequired,
 };
 
 export default connect(
   (state) => ({
-    darkTheme: darkThemeSelector(state),
+    isDarkTheme: darkThemeSelector(state),
     isFahrenheit: fahrenheitSelector(state),
   }),
   { switchDark, switchFahrenheit }
