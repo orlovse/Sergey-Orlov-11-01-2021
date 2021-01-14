@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { get } from "lodash";
+import get from "lodash/get";
 import { Box } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import styles from "./currentWeatherCard.module.css";

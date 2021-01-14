@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { get } from "lodash";
+import get from "lodash/get";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
@@ -48,7 +48,7 @@ const FavoriteCard = ({ favoriteWeather, currentKey, isFahrenheit }) => {
 };
 
 FavoriteCard.propTypes = {
-  favoriteWeather: PropTypes.object.isRequired,
+  // favoriteWeather: PropTypes.object.isRequired,
   currentKey: PropTypes.string.isRequired,
   isFahrenheit: PropTypes.bool.isRequired,
 };

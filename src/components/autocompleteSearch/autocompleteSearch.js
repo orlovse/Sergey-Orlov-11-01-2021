@@ -39,6 +39,7 @@ const AutocompleteSearch = ({
         renderInput={(params) => (
           <TextField
             {...params}
+            placeholder="search"
             variant="outlined"
             InputProps={{
               ...params.InputProps,

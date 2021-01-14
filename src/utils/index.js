@@ -54,3 +54,14 @@ export const removeFromLocalStorage = (key) => {
 export const celsiusToFahrenheit = (num) => {
   return Math.floor((num * 9) / 5 + 32);
 };
+
+export const getUserTime = new Date().getHours();
+
+export const setDarkThemeIfNight = (switchDark) => {
+  if (
+    (getUserTime > 20 || getUserTime < 6) &&
+    typeof loadFromLocalStorage("isDark") !== "boolean"
+  ) {
+    switchDark(true);
+  }
+};

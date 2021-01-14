@@ -66,10 +66,10 @@ const loadCityByGeolocation = async (coords, dispatch, getState) => {
   if (loading || loaded) return;
   dispatch({ type: LOAD_CITY_BY_GEOLOCATION + REQUEST });
   try {
-    const response = searchCity;
-    // const response = await fetch(
-    //   `${BASE_URL}/${GEOPOSITION_URL}?apikey=${API_KEY}&q=${coords.latitude},${coords.longitude}`
-    // ).then((res) => res.json());
+    // const response = searchCity;
+    const response = await fetch(
+      `${BASE_URL}/${GEOPOSITION_URL}?apikey=${API_KEY}&q=${coords.latitude},${coords.longitude}`
+    ).then((res) => res.json());
     dispatch({ type: LOAD_CITY_BY_GEOLOCATION + SUCCESS, response });
     const city = {
       key: response.Key,
@@ -80,7 +80,6 @@ const loadCityByGeolocation = async (coords, dispatch, getState) => {
     dispatch({ type: SET_CURRENT_CITY, payload: { city } });
   } catch (error) {
     dispatch({ type: LOAD_CITY_BY_GEOLOCATION + FAILURE, error });
-    //TODO need toaster or dispatch to error page
   }
 };
 
@@ -129,12 +128,12 @@ const loadCurrentWeather = async (cityId, dispatch, getState) => {
   if (loading) return;
   dispatch({ type: LOAD_CURRENT_WEATHER + REQUEST });
   try {
-    const response = currentWeather[0];
-    // let response = await fetch(
-    //   `${BASE_URL}${CURRENT_CONDITIONS_URL}/${cityId}?apikey=${API_KEY}`
-    // ).then((res) => res.json());
+    // const response = currentWeather[0];
+    let response = await fetch(
+      `${BASE_URL}${CURRENT_CONDITIONS_URL}/${cityId}?apikey=${API_KEY}`
+    ).then((res) => res.json());
 
-    // response = response[0];
+    response = response[0];
     dispatch({ type: LOAD_CURRENT_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_CURRENT_WEATHER + FAILURE, error });
@@ -157,10 +156,10 @@ const loadFiveDaysWeather = async (cityId, dispatch, getState) => {
   if (loading || loaded) return;
   dispatch({ type: LOAD_FIVE_DAYS_WEATHER + REQUEST });
   try {
-    const response = fiveDays;
-    // const response = await fetch(
-    //   `${BASE_URL}${FIVE_DAYS_URL}/${cityId}?apikey=${API_KEY}&metric=true`
-    // ).then((res) => res.json());
+    // const response = fiveDays;
+    const response = await fetch(
+      `${BASE_URL}${FIVE_DAYS_URL}/${cityId}?apikey=${API_KEY}&metric=true`
+    ).then((res) => res.json());
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + FAILURE, error });
@@ -188,10 +187,10 @@ export const loadSearchCity = (name) => async (dispatch, getState) => {
   if (loading || loaded) return;
   dispatch({ type: SEARCH_CITY + REQUEST });
   try {
-    const response = searchCity;
-    // const response = await fetch(
-    //   `${BASE_URL}${AUTOCOMPLETE_SEARCH_URL}?apikey=${API_KEY}&q=${name}`
-    // ).then((res) => res.json());
+    // const response = searchCity;
+    const response = await fetch(
+      `${BASE_URL}${AUTOCOMPLETE_SEARCH_URL}?apikey=${API_KEY}&q=${name}`
+    ).then((res) => res.json());
     dispatch({ type: SEARCH_CITY + SUCCESS, response });
   } catch (error) {
     dispatch({ type: SEARCH_CITY + FAILURE, error });
