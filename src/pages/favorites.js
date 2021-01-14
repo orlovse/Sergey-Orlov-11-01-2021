@@ -5,13 +5,11 @@ import { Grid } from "@material-ui/core";
 
 const Favorites = ({ favorites }) => {
   const favoritesList = Object.keys(favorites).map((key) => (
-    <FavoriteCard key={key} currentKey={key} favoriteWeather={favorites[key]} />
-  ));
-  return (
-    <Grid container justify="space-between">
-      {favoritesList}
+    <Grid item xs={12} md={6} lg="auto" key={key}>
+      <FavoriteCard currentKey={key} favoriteWeather={favorites[key]} />
     </Grid>
-  );
+  ));
+  return <Grid container>{favoritesList}</Grid>;
 };
 
 export default connect((state) => ({

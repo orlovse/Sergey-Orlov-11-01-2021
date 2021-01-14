@@ -1,17 +1,14 @@
 import { Grid } from "@material-ui/core";
 import styles from "./favoriteCard.module.css";
 import AnimatedHeart from "../animatedHeart";
-import AnimatedIcons from "../animatedIcons";
-import { getIconName } from "../../utils";
+import { getIcon } from "../../utils/icons";
 
 const FavoriteCard = ({ favoriteWeather, currentKey }) => {
-  const iconName = getIconName(favoriteWeather.currentWeather.WeatherIcon);
-  console.log("favoriteWeather", favoriteWeather);
+  const iconSrc = getIcon(favoriteWeather.WeatherIcon);
   return (
     <div className={styles.card}>
       <Grid container direction="column" alignItems="center">
-        {/* <img src={iconSrc} alt="weather-icon"></img> */}
-        <AnimatedIcons name={iconName} />
+        <img width="100px" src={iconSrc} alt="weather-icon"></img>
         <div>{favoriteWeather.currentCityName}</div>
         <div>{favoriteWeather.currentWeather.WeatherText}</div>
         <div>{favoriteWeather.currentWeather.Temperature.Metric.Value}</div>

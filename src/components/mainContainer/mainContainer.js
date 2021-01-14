@@ -28,7 +28,12 @@ const MainContainer = ({
 
   return (
     <Box className="box-padding">
-      <Grid container direction="row" justify="space-between">
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+      >
         <CurrentWeatherCard
           weatherIcon={WeatherIcon}
           temperature={Temperature}
