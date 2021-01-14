@@ -25,6 +25,10 @@ export const favoritesSelector = (state) => state.localUserOptions.favorites;
 export const cityOptionsSelector = (state) => state.searchCity.entities;
 
 export const currentWeatherSelector = (state) => state.currentWeather.entities;
+export const currentWeatherLoadingSelector = (state) =>
+  state.currentWeather.loading;
+export const currentWeatherLoadedSelector = (state) =>
+  state.currentWeather.loaded;
 
 export const fiveDaysWeatherSelector = (state) =>
   state.fiveDaysWeather.entities;

@@ -1,13 +1,13 @@
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import {
   loadSearchCity,
   setCurrentCity,
   loadAllWeather,
 } from "../../redux/actions";
 import { cityOptionsSelector } from "../../redux/selectors";
-import { Box } from "@material-ui/core";
+import { Box, TextField } from "@material-ui/core";
 
 const AutocompleteSearch = ({
   cityOptions,
@@ -49,6 +49,13 @@ const AutocompleteSearch = ({
       />
     </Box>
   );
+};
+
+AutocompleteSearch.propTypes = {
+  cityOptions: PropTypes.array.isRequired,
+  loadSearchCity: PropTypes.func.isRequired,
+  setCurrentCity: PropTypes.func.isRequired,
+  loadAllWeather: PropTypes.func.isRequired,
 };
 
 export default connect(

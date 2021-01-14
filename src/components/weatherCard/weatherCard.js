@@ -1,9 +1,10 @@
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { get } from "lodash";
 import { Grid } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { getIcon } from "../../utils/icons";
 import styles from "./weatherCard.module.css";
-import { connect } from "react-redux";
 import { fahrenheitSelector } from "../../redux/selectors";
 import { celsiusToFahrenheit } from "../../utils";
 
@@ -38,6 +39,11 @@ const WeatherCard = ({ weatherData, isFahrenheit }) => {
       </Grid>
     </div>
   );
+};
+
+WeatherCard.propTypes = {
+  weatherData: PropTypes.object,
+  isFahrenheit: PropTypes.bool.isRequired,
 };
 
 export default connect((state) => ({

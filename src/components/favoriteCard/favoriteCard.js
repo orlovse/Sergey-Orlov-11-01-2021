@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { get } from "lodash";
+import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import styles from "./favoriteCard.module.css";
@@ -32,7 +33,6 @@ const FavoriteCard = ({ favoriteWeather, currentKey, isFahrenheit }) => {
   ) : (
     <Skeleton variant="circle" width={80} height={80} />
   );
-  console.log(favoriteWeather);
 
   return (
     <div className={styles.card}>
@@ -45,6 +45,12 @@ const FavoriteCard = ({ favoriteWeather, currentKey, isFahrenheit }) => {
       </Grid>
     </div>
   );
+};
+
+FavoriteCard.propTypes = {
+  favoriteWeather: PropTypes.object.isRequired,
+  currentKey: PropTypes.string.isRequired,
+  isFahrenheit: PropTypes.bool.isRequired,
 };
 
 export default connect((state) => ({
