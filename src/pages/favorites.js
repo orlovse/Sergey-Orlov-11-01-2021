@@ -1,7 +1,8 @@
-import FavoriteCard from "../components/favoriteCard";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { favoritesSelector } from "../redux/selectors";
 import { Grid } from "@material-ui/core";
+import FavoriteCard from "../components/favoriteCard";
+import { favoritesSelector } from "../redux/selectors";
 
 const Favorites = ({ favorites }) => {
   const favoritesList = Object.keys(favorites).map((key) => (
@@ -10,6 +11,10 @@ const Favorites = ({ favorites }) => {
     </Grid>
   ));
   return <Grid container>{favoritesList}</Grid>;
+};
+
+Favorites.propTypes = {
+  favorites: PropTypes.object,
 };
 
 export default connect((state) => ({

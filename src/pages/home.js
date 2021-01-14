@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Box } from "@material-ui/core";
 import styles from "./pages.module.css";
 import MainContainer from "../components/mainContainer";
@@ -22,6 +23,11 @@ const Home = ({ loadAllWeather, cityKey }) => {
       </Box>
     </>
   );
+};
+
+Home.propTypes = {
+  loadAllWeather: PropTypes.func.isRequired,
+  cityKey: PropTypes.string.isRequired,
 };
 
 export default connect(
