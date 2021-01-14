@@ -3,13 +3,7 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import {
-  Button,
-  Grid,
-  Switch,
-  Hidden,
-  SwipeableDrawer,
-} from "@material-ui/core";
+import { Button, Grid, Switch, Hidden } from "@material-ui/core";
 import styles from "./navbar.module.css";
 import { darkThemeSelector, fahrenheitSelector } from "../../redux/selectors";
 import { switchDark, switchFahrenheit } from "../../redux/actions";

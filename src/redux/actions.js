@@ -18,6 +18,8 @@ import { searchCity } from "../mockData";
 
 import { saveToLocalStorage, removeFromLocalStorage } from "../utils";
 
+import { toast } from "react-toastify";
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const FIVE_DAYS_URL = process.env.REACT_APP_FIVE_DAYS_URL;
@@ -92,6 +94,15 @@ export const addFavorite = (key, currentCityName, currentWeather) => (
     type: ADD_TO_FAVORITES,
     payload: { key, currentCityName, currentWeather },
   });
+  toast.success("City added to favorites!", {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 };
 
 export const removeFromFavorite = (key) => (dispatch) => {
@@ -99,6 +110,15 @@ export const removeFromFavorite = (key) => (dispatch) => {
   dispatch({
     type: REMOVE_FROM_FAVORITES,
     payload: { key },
+  });
+  toast.warning("City removed to favorites!", {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
   });
 };
 
@@ -118,7 +138,15 @@ const loadCurrentWeather = async (cityId, dispatch, getState) => {
     dispatch({ type: LOAD_CURRENT_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_CURRENT_WEATHER + FAILURE, error });
-    //TODO need toaster or dispatch to error page
+    toast.error("Error loading current weather!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 };
 
@@ -136,7 +164,15 @@ const loadFiveDaysWeather = async (cityId, dispatch, getState) => {
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + FAILURE, error });
-    //TODO need toaster or dispatch to error page
+    toast.error("Error loading weather!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 };
 
@@ -159,6 +195,14 @@ export const loadSearchCity = (name) => async (dispatch, getState) => {
     dispatch({ type: SEARCH_CITY + SUCCESS, response });
   } catch (error) {
     dispatch({ type: SEARCH_CITY + FAILURE, error });
-    //TODO need toaster or dispatch to error page
+    toast.error("Error!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 };

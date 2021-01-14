@@ -11,6 +11,7 @@ import Home from "./pages/home";
 import Favorites from "./pages/favorites";
 import NotFoundPage from "./pages/notFoundPage";
 import { getLocation } from "./redux/actions";
+import { ToastContainer } from "react-toastify";
 
 function App({ isDarkTheme, getLocation }) {
   useEffect(() => {
@@ -22,6 +23,7 @@ function App({ isDarkTheme, getLocation }) {
   return (
     <ThemeProvider theme={currentTheme}>
       <div className="App">
+        <ToastContainer autoClose={2000} />
         <Navbar />
         <Paper className="box" square>
           <Container>
