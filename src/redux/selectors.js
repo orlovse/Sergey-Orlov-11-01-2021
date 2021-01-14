@@ -1,3 +1,4 @@
+import { get } from "lodash";
 import { createSelector } from "reselect";
 
 export const currentCitySelector = (state) =>
@@ -30,15 +31,18 @@ export const fiveDaysWeatherSelector = (state) =>
 export const fiveDaysModifiedSelector = createSelector(
   fiveDaysWeatherSelector,
   (weather) => {
-    if (!weather.DailyForecasts) return [];
-    return weather.DailyForecasts.map((item) => ({
-      temperature: item.Temperature,
-      icon: item.Day.Icon,
-      phrase: item.Day.IconPhrase,
-      date: item.Date,
-      weekday: new Date(item.Date).toLocaleDateString("en-US", {
-        weekday: "long",
-      }),
+    const dailyForecasts = get(weather, "DailyForecasts", []);
+    // if (!weather.DailyForecasts) return [];
+    return dailyForecasts.map((item) => ({
+      temperature: get(item, "Temperature", null),
+      icon: get(item, "Day.Icon", null),
+      phrase: get(item, "Day.IconPhrase", null),
+      date: get(item, "Date", null),
+      weekday: item.Date
+        ? new Date(item.Date).toLocaleDateString("en-US", {
+            weekday: "long",
+          })
+        : null,
     }));
   }
 );

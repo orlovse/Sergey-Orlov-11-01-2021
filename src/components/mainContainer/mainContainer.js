@@ -16,15 +16,19 @@ const MainContainer = ({
   currentCity,
   currentCityKey,
 }) => {
-  if (Object.keys(currentWeather) > 1 && fiveDaysWeather.length < 1)
-    return <div>Loading...</div>;
-
   const { WeatherText, WeatherIcon, Temperature } = currentWeather;
-  const cardsList = fiveDaysWeather.map((weatherData) => (
-    <Grid item xs={12} md={6} lg="auto" key={weatherData.date}>
-      <WeatherCard weatherData={weatherData} />
-    </Grid>
-  ));
+  const cardsList =
+    fiveDaysWeather.length > 1
+      ? fiveDaysWeather.map((weatherData) => (
+          <Grid item xs={12} md={6} lg="auto" key={weatherData.date}>
+            <WeatherCard weatherData={weatherData} />
+          </Grid>
+        ))
+      : [1, 2, 3, 4, 5].map((item) => (
+          <Grid item xs={12} md={6} lg="auto" key={item}>
+            <WeatherCard weatherData={null} />
+          </Grid>
+        ));
 
   return (
     <Box className="box-padding">
@@ -34,13 +38,16 @@ const MainContainer = ({
         justify="space-between"
         alignItems="center"
       >
-        <CurrentWeatherCard
-          weatherIcon={WeatherIcon}
-          temperature={Temperature}
-          currentCity={currentCity}
-        />
-
-        <AnimatedHeart currentCityKey={currentCityKey} />
+        <Grid item xs={12} md="auto">
+          <CurrentWeatherCard
+            weatherIcon={WeatherIcon}
+            temperature={Temperature}
+            currentCity={currentCity}
+          />
+        </Grid>
+        <Grid item xs={12} md="auto" className="flex-center">
+          <AnimatedHeart currentCityKey={currentCityKey} />
+        </Grid>
       </Grid>
       <h2>{WeatherText}</h2>
       <Grid container justify="space-between">

@@ -1,8 +1,11 @@
 .root {
+  margin: 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .details {
+
   line-height: .5;
 }

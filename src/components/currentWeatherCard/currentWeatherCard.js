@@ -1,4 +1,6 @@
+import { get } from "lodash";
 import { Box } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import styles from "./currentWeatherCard.module.css";
 import { getIcon } from "../../utils/icons";
 import { connect } from "react-redux";
@@ -10,23 +12,25 @@ const CurrentWeatherCard = ({
   currentCity,
   isFahrenheit,
 }) => {
-  if (!temperature) return "Loading...";
   const currentTemperature = isFahrenheit
-    ? temperature.Imperial.Value + " F"
-    : temperature.Metric.Value + " \u00b0C";
+    ? get(temperature, "Imperial.Value", 0) + " F"
+    : Math.round(get(temperature, "Metric.Value", 0)) + " \u00b0C";
   const iconSrc = getIcon(weatherIcon);
+  const img = iconSrc ? (
+    <img width="180px" src={iconSrc} alt="weather-icon"></img>
+  ) : (
+    <Skeleton variant="circle" width={100} height={100} />
+  );
   return (
     <Box className={styles.root}>
-      <div>
-        <img width="180px" src={iconSrc} alt="weather-icon"></img>
-      </div>
+      <div>{img}</div>
 
       <div className={styles.details}>
         <div>
-          <h2>{currentCity.name}</h2>
-          <h5>{currentCity.country} </h5>
+          <h2>{currentCity.name || <Skeleton width={120} />}</h2>
+          <h5>{currentCity.country || <Skeleton width={120} />} </h5>
         </div>
-        <h3>{currentTemperature}</h3>
+        <h3>{currentTemperature || <Skeleton width={60} />}</h3>
       </div>
     </Box>
   );

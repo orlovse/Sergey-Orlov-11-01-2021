@@ -23,7 +23,9 @@ const icons = {
 };
 
 export const getIcon = (number) => {
-  if (number > 0 && number < 3) {
+  if (!number) {
+    return null;
+  } else if (number > 0 && number < 3) {
     return icons[1];
   } else if (number > 2 && number < 7) {
     return icons[2];

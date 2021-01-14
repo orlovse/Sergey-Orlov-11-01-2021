@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { Box } from "@material-ui/core";
-import styles from "./home.module.css";
+import styles from "./pages.module.css";
 import MainContainer from "../components/mainContainer";
 import AutocompleteSearch from "../components/autocompleteSearch";
 import { loadAllWeather } from "../redux/actions";

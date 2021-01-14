@@ -20,7 +20,7 @@ import { saveToLocalStorage, removeFromLocalStorage } from "../utils";
 
 import { toast } from "react-toastify";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = "process.env.REACT_APP_API_KEY";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const FIVE_DAYS_URL = process.env.REACT_APP_FIVE_DAYS_URL;
 const AUTOCOMPLETE_SEARCH_URL = process.env.REACT_APP_AUTOCOMPLETE_SEARCH_URL;
@@ -66,10 +66,10 @@ const loadCityByGeolocation = async (coords, dispatch, getState) => {
   if (loading || loaded) return;
   dispatch({ type: LOAD_CITY_BY_GEOLOCATION + REQUEST });
   try {
-    const response = searchCity;
-    // const response = await fetch(
-    //   `${BASE_URL}/${GEOPOSITION_URL}?apikey=${API_KEY}&q=${coords.latitude},${coords.longitude}`
-    // ).then((res) => res.json());
+    // const response = searchCity;
+    const response = await fetch(
+      `${BASE_URL}/${GEOPOSITION_URL}?apikey=${API_KEY}&q=${coords.latitude},${coords.longitude}`
+    ).then((res) => res.json());
     dispatch({ type: LOAD_CITY_BY_GEOLOCATION + SUCCESS, response });
     const city = {
       key: response.Key,
@@ -95,7 +95,7 @@ export const addFavorite = (key, currentCityName, currentWeather) => (
     payload: { key, currentCityName, currentWeather },
   });
   toast.success("City added to favorites!", {
-    position: "top-right",
+    position: "bottom-center",
     autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -111,8 +111,8 @@ export const removeFromFavorite = (key) => (dispatch) => {
     type: REMOVE_FROM_FAVORITES,
     payload: { key },
   });
-  toast.warning("City removed to favorites!", {
-    position: "top-right",
+  toast.warning("City removed from favorites!", {
+    position: "bottom-center",
     autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -129,12 +129,12 @@ const loadCurrentWeather = async (cityId, dispatch, getState) => {
   if (loading) return;
   dispatch({ type: LOAD_CURRENT_WEATHER + REQUEST });
   try {
-    const response = currentWeather[0];
-    // let response = await fetch(
-    //   `${BASE_URL}${CURRENT_CONDITIONS_URL}/${cityId}?apikey=${API_KEY}`
-    // ).then((res) => res.json());
+    // const response = currentWeather[0];
+    let response = await fetch(
+      `${BASE_URL}${CURRENT_CONDITIONS_URL}/${cityId}?apikey=${API_KEY}`
+    ).then((res) => res.json());
 
-    // response = response[0];
+    response = response[0];
     dispatch({ type: LOAD_CURRENT_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_CURRENT_WEATHER + FAILURE, error });
@@ -157,10 +157,10 @@ const loadFiveDaysWeather = async (cityId, dispatch, getState) => {
   if (loading || loaded) return;
   dispatch({ type: LOAD_FIVE_DAYS_WEATHER + REQUEST });
   try {
-    const response = fiveDays;
-    // const response = await fetch(
-    //   `${BASE_URL}${FIVE_DAYS_URL}/${cityId}?apikey=${API_KEY}&metric=true`
-    // ).then((res) => res.json());
+    // const response = fiveDays;
+    const response = await fetch(
+      `${BASE_URL}${FIVE_DAYS_URL}/${cityId}?apikey=${API_KEY}&metric=true`
+    ).then((res) => res.json());
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + FAILURE, error });
@@ -188,10 +188,10 @@ export const loadSearchCity = (name) => async (dispatch, getState) => {
   if (loading || loaded) return;
   dispatch({ type: SEARCH_CITY + REQUEST });
   try {
-    const response = searchCity;
-    // const response = await fetch(
-    //   `${BASE_URL}${AUTOCOMPLETE_SEARCH_URL}?apikey=${API_KEY}&q=${name}`
-    // ).then((res) => res.json());
+    // const response = searchCity;
+    const response = await fetch(
+      `${BASE_URL}${AUTOCOMPLETE_SEARCH_URL}?apikey=${API_KEY}&q=${name}`
+    ).then((res) => res.json());
     dispatch({ type: SEARCH_CITY + SUCCESS, response });
   } catch (error) {
     dispatch({ type: SEARCH_CITY + FAILURE, error });

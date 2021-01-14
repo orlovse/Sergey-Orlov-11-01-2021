@@ -8,3 +8,22 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+.wrapper {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  height: 60vh;
+}
+
+.text {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  font-size: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  ;
+}

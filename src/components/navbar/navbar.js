@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import { Button, Grid, Switch, Hidden } from "@material-ui/core";
+import { Button, Grid, Switch } from "@material-ui/core";
 import styles from "./navbar.module.css";
 import { darkThemeSelector, fahrenheitSelector } from "../../redux/selectors";
 import { switchDark, switchFahrenheit } from "../../redux/actions";
@@ -40,20 +40,18 @@ const Navbar = ({ darkTheme, switchDark, isFahrenheit, switchFahrenheit }) => {
         <Toolbar>
           <Grid container justify="space-between">
             <div>
-              <Hidden smDown>
-                <Switch
-                  checked={darkTheme}
-                  onChange={handleSwitchTheme}
-                  name="checkedA"
-                  inputProps={{ "aria-label": "secondary checkbox" }}
-                />
-                <Switch
-                  checked={isFahrenheit}
-                  onChange={handleSwitchFahrenheit}
-                  name="checkedB"
-                  inputProps={{ "aria-label": "secondary checkbox" }}
-                />
-              </Hidden>
+              <Switch
+                checked={darkTheme}
+                onChange={handleSwitchTheme}
+                name="checkedA"
+                inputProps={{ "aria-label": "secondary checkbox" }}
+              />
+              <Switch
+                checked={isFahrenheit}
+                onChange={handleSwitchFahrenheit}
+                name="checkedB"
+                inputProps={{ "aria-label": "secondary checkbox" }}
+              />
             </div>
 
             <div>{renderLinks}</div>
