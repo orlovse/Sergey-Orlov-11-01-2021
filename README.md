@@ -4,19 +4,19 @@ Link to site: https://weather-app-6731f.web.app/ \
 App use Accuweather API (50 requests per day). 
 
 ## Technologies
-*React
-*Redux
-*Material UI
+* React
+* Redux
+* Material UI
 
 ## Features
-*Autocomplete city search \
-*Get weather by user geolocation \
-*Day/Night detection
-*Add/remove city to favorites (save in local storage) \
-*Toggle dark\light mode (save in local storage) \
-*Toggle celcius\farenheit (save in local storage) \
-*Success/error toasts \
-*404 Page
+* Autocomplete city search 
+* Get weather by user geolocation 
+* Day/Night detection
+* Add/remove city to favorites (save in local storage) 
+* Toggle dark\light mode (save in local storage) 
+* Toggle celcius\farenheit (save in local storage) 
+* Success/error toasts 
+* 404 Page
 
 
 ## Available Scripts
