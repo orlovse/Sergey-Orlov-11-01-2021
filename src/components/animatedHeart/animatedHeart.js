@@ -11,17 +11,18 @@ import styles from "./animatedHeart.module.css";
 const AnimatedHeart = ({
   addFavorite,
   currentCity,
+  currentCityKey,
   removeFromFavorite,
   currentWeather,
   favorites,
 }) => {
-  const { key, name, country } = currentCity;
-  const isFavoriteCity = !!favorites[key];
+  const { name, country } = currentCity;
+  const isFavoriteCity = !!favorites[currentCityKey];
   const handleClick = () => {
     if (isFavoriteCity) {
-      removeFromFavorite(key);
+      removeFromFavorite(currentCityKey);
     } else {
-      addFavorite(key, name, country, currentWeather);
+      addFavorite(currentCityKey, name, country, currentWeather);
     }
   };
   const style = isFavoriteCity ? styles.active : styles.heart;
@@ -30,6 +31,7 @@ const AnimatedHeart = ({
 
 AnimatedHeart.propTypes = {
   addFavorite: PropTypes.func.isRequired,
+  currentCityKey: PropTypes.string.isRequired,
   currentCity: PropTypes.shape({
     key: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
