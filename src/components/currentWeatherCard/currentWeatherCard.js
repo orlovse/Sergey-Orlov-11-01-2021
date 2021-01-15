@@ -25,8 +25,7 @@ const CurrentWeatherCard = ({
   return (
     <Box className={styles.root}>
       <div>{img}</div>
-
-      <div className={styles.details}>
+      <div>
         <div>
           <h2>{currentCity.name || <Skeleton width={120} />}</h2>
           <h5>{currentCity.country || <Skeleton width={120} />} </h5>
