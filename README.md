@@ -12,9 +12,9 @@ App use Accuweather API (50 requests per day).
 * Autocomplete city search 
 * Get weather by user geolocation 
 * Day/Night detection
-* Add/remove city to favorites (save in local storage) 
-* Toggle dark\light mode (save in local storage) 
-* Toggle celcius\farenheit (save in local storage) 
+* Add/remove city to favorites (save to local storage) 
+* Toggle dark/light mode (save to local storage) 
+* Toggle celsius/fahrenheit (save to local storage) 
 * Success/error toasts 
 * 404 Page
 
