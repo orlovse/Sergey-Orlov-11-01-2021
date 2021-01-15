@@ -44,12 +44,12 @@ export const localUserOptions = (state = initialState, action) => {
         },
       };
     case ADD_TO_FAVORITES:
-      const { key, currentCityName, currentWeather } = payload;
+      const { key, currentCityName, currentCountry, currentWeather } = payload;
       return {
         ...state,
         favorites: {
           ...state.favorites,
-          [key]: { currentCityName, currentWeather },
+          [key]: { currentCityName, currentCountry, currentWeather },
         },
       };
     case REMOVE_FROM_FAVORITES:

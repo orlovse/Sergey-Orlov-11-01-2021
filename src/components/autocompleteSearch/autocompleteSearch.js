@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import get from "lodash/get";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import {
   loadSearchCity,
@@ -30,10 +31,10 @@ const AutocompleteSearch = ({
             const city = {
               key: newValue.Key,
               name: newValue.LocalizedName,
-              country: newValue.Country.LocalizedName,
+              country: get(newValue, "Country.LocalizedName", null),
             };
-            setCurrentCity(city);
             loadAllWeather(newValue.Key);
+            setCurrentCity(city);
           }
         }}
         renderInput={(params) => (
