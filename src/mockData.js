@@ -81,7 +81,7 @@ export const fiveDays = {
       EpochDate: 1610348400,
       Temperature: {
         Minimum: {
-          Value: 3.3,
+          Value: -3.3,
           Unit: "C",
           UnitType: 17,
         },
@@ -116,12 +116,12 @@ export const fiveDays = {
       EpochDate: 1610434800,
       Temperature: {
         Minimum: {
-          Value: 5.1,
+          Value: -5.1,
           Unit: "C",
           UnitType: 17,
         },
         Maximum: {
-          Value: 6.6,
+          Value: -6.6,
           Unit: "C",
           UnitType: 17,
         },
