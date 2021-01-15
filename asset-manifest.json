@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/Sergey-Orlov-11-01-2021/static/css/main.d2dfe440.chunk.css",
+    "main.js": "/Sergey-Orlov-11-01-2021/static/js/main.92fc052d.chunk.js",
+    "main.js.map": "/Sergey-Orlov-11-01-2021/static/js/main.92fc052d.chunk.js.map",
+    "runtime-main.js": "/Sergey-Orlov-11-01-2021/static/js/runtime-main.9e054ed4.js",
+    "runtime-main.js.map": "/Sergey-Orlov-11-01-2021/static/js/runtime-main.9e054ed4.js.map",
+    "static/css/2.83342f34.chunk.css": "/Sergey-Orlov-11-01-2021/static/css/2.83342f34.chunk.css",
+    "static/js/2.e9fadfef.chunk.js": "/Sergey-Orlov-11-01-2021/static/js/2.e9fadfef.chunk.js",
+    "static/js/2.e9fadfef.chunk.js.map": "/Sergey-Orlov-11-01-2021/static/js/2.e9fadfef.chunk.js.map",
+    "static/js/3.c0e1fd8f.chunk.js": "/Sergey-Orlov-11-01-2021/static/js/3.c0e1fd8f.chunk.js",
+    "static/js/3.c0e1fd8f.chunk.js.map": "/Sergey-Orlov-11-01-2021/static/js/3.c0e1fd8f.chunk.js.map",
+    "index.html": "/Sergey-Orlov-11-01-2021/index.html",
+    "static/css/2.83342f34.chunk.css.map": "/Sergey-Orlov-11-01-2021/static/css/2.83342f34.chunk.css.map",
+    "static/css/main.d2dfe440.chunk.css.map": "/Sergey-Orlov-11-01-2021/static/css/main.d2dfe440.chunk.css.map",
+    "static/js/2.e9fadfef.chunk.js.LICENSE.txt": "/Sergey-Orlov-11-01-2021/static/js/2.e9fadfef.chunk.js.LICENSE.txt",
+    "static/media/1.5cf38d71.svg": "/Sergey-Orlov-11-01-2021/static/media/1.5cf38d71.svg",
+    "static/media/10.1059c2e4.svg": "/Sergey-Orlov-11-01-2021/static/media/10.1059c2e4.svg",
+    "static/media/styles.css": "/Sergey-Orlov-11-01-2021/static/media/789395.2878d5e0.svg",
+    "static/media/2.d7bc37cf.svg": "/Sergey-Orlov-11-01-2021/static/media/2.d7bc37cf.svg",
+    "static/media/3.7feaeea5.svg": "/Sergey-Orlov-11-01-2021/static/media/3.7feaeea5.svg",
+    "static/media/4.e74c1a7e.svg": "/Sergey-Orlov-11-01-2021/static/media/4.e74c1a7e.svg",
+    "static/media/5.9a33f6b8.svg": "/Sergey-Orlov-11-01-2021/static/media/5.9a33f6b8.svg",
+    "static/media/6.3f462c92.svg": "/Sergey-Orlov-11-01-2021/static/media/6.3f462c92.svg",
+    "static/media/7.894413c2.svg": "/Sergey-Orlov-11-01-2021/static/media/7.894413c2.svg",
+    "static/media/8.c969a3e3.svg": "/Sergey-Orlov-11-01-2021/static/media/8.c969a3e3.svg",
+    "static/media/9.8cff190b.svg": "/Sergey-Orlov-11-01-2021/static/media/9.8cff190b.svg",
+    "static/media/celsius.a143501f.svg": "/Sergey-Orlov-11-01-2021/static/media/celsius.a143501f.svg",
+    "static/media/dark.c8d5dfc2.svg": "/Sergey-Orlov-11-01-2021/static/media/dark.c8d5dfc2.svg",
+    "static/media/fahrenheit.73498b2f.svg": "/Sergey-Orlov-11-01-2021/static/media/fahrenheit.73498b2f.svg",
+    "static/media/animatedHeart.module.css": "/Sergey-Orlov-11-01-2021/static/media/heart.fa922e04.png",
+    "static/media/light.9bde1ba7.svg": "/Sergey-Orlov-11-01-2021/static/media/light.9bde1ba7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9e054ed4.js",
+    "static/css/2.83342f34.chunk.css",
+    "static/js/2.e9fadfef.chunk.js",
+    "static/css/main.d2dfe440.chunk.css",
+    "static/js/main.92fc052d.chunk.js"
+  ]
+}
