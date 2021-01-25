@@ -21,13 +21,12 @@ import {
   currentCityKeySelector,
   currentWeatherLoadedSelector,
 } from "./selectors";
-
-const API_KEY = process.env.REACT_APP_API_KEY;
-const BASE_URL = "https://dataservice.accuweather.com";
-const FIVE_DAYS_URL = "/forecasts/v1/daily/5day";
-const AUTOCOMPLETE_SEARCH_URL = "/locations/v1/cities/autocomplete";
-const CURRENT_CONDITIONS_URL = "/currentconditions/v1";
-const GEOPOSITION_URL = "/locations/v1/cities/geoposition/search";
+import {
+  callApiLoadCityByGeo,
+  callApiCurrentWeather,
+  callApiFiveDaysWeather,
+  callApiSearchCity,
+} from "./api";
 
 export const setCurrentCity = (city) => ({
   type: SET_CURRENT_CITY,
@@ -68,9 +67,7 @@ const loadCityByGeolocation = async (coords, dispatch, getState) => {
   if (loading || loaded) return;
   dispatch({ type: LOAD_CITY_BY_GEOLOCATION + REQUEST });
   try {
-    const response = await fetch(
-      `${BASE_URL}/${GEOPOSITION_URL}?apikey=${API_KEY}&q=${coords.latitude},${coords.longitude}`
-    ).then((res) => res.json());
+    const response = await callApiLoadCityByGeo(coords);
     dispatch({ type: LOAD_CITY_BY_GEOLOCATION + SUCCESS, response });
     const city = {
       key: response.Key,
@@ -130,9 +127,7 @@ const loadCurrentWeather = async (cityId, dispatch, getState) => {
   if (loading) return;
   dispatch({ type: LOAD_CURRENT_WEATHER + REQUEST });
   try {
-    let response = await fetch(
-      `${BASE_URL}${CURRENT_CONDITIONS_URL}/${cityId}?apikey=${API_KEY}`
-    ).then((res) => res.json());
+    const response = await callApiCurrentWeather(cityId);
 
     dispatch({ type: LOAD_CURRENT_WEATHER + SUCCESS, response: response[0] });
   } catch (error) {
@@ -155,9 +150,8 @@ const loadFiveDaysWeather = async (cityId, dispatch, getState) => {
   if (loading) return;
   dispatch({ type: LOAD_FIVE_DAYS_WEATHER + REQUEST });
   try {
-    const response = await fetch(
-      `${BASE_URL}${FIVE_DAYS_URL}/${cityId}?apikey=${API_KEY}&metric=true`
-    ).then((res) => res.json());
+    const response = await callApiFiveDaysWeather(cityId);
+
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + SUCCESS, response });
   } catch (error) {
     dispatch({ type: LOAD_FIVE_DAYS_WEATHER + FAILURE, error });
@@ -193,9 +187,7 @@ export const loadSearchCity = (name) => async (dispatch, getState) => {
     let timeout;
     clearTimeout(timeout);
     timeout = setTimeout(async () => {
-      const response = await fetch(
-        `${BASE_URL}${AUTOCOMPLETE_SEARCH_URL}?apikey=${API_KEY}&q=${name}`
-      ).then((res) => res.json());
+      const response = await callApiSearchCity(name);
       dispatch({ type: SEARCH_CITY + SUCCESS, response });
     }, 1000);
   } catch (error) {
