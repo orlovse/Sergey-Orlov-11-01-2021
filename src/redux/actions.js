@@ -23,11 +23,11 @@ import {
 } from "./selectors";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-const BASE_URL = process.env.REACT_APP_BASE_URL;
-const FIVE_DAYS_URL = process.env.REACT_APP_FIVE_DAYS_URL;
-const AUTOCOMPLETE_SEARCH_URL = process.env.REACT_APP_AUTOCOMPLETE_SEARCH_URL;
-const CURRENT_CONDITIONS_URL = process.env.REACT_APP_CURRENT_CONDITIONS_URL;
-const GEOPOSITION_URL = process.env.REACT_APP_GEOPOSITION_URL;
+const BASE_URL = "https://dataservice.accuweather.com";
+const FIVE_DAYS_URL = "/forecasts/v1/daily/5day";
+const AUTOCOMPLETE_SEARCH_URL = "/locations/v1/cities/autocomplete";
+const CURRENT_CONDITIONS_URL = "/currentconditions/v1";
+const GEOPOSITION_URL = "/locations/v1/cities/geoposition/search";
 
 export const setCurrentCity = (city) => ({
   type: SET_CURRENT_CITY,
@@ -190,10 +190,14 @@ export const loadSearchCity = (name) => async (dispatch, getState) => {
   if (loading || loaded) return;
   dispatch({ type: SEARCH_CITY + REQUEST });
   try {
-    const response = await fetch(
-      `${BASE_URL}${AUTOCOMPLETE_SEARCH_URL}?apikey=${API_KEY}&q=${name}`
-    ).then((res) => res.json());
-    dispatch({ type: SEARCH_CITY + SUCCESS, response });
+    let timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(async () => {
+      const response = await fetch(
+        `${BASE_URL}${AUTOCOMPLETE_SEARCH_URL}?apikey=${API_KEY}&q=${name}`
+      ).then((res) => res.json());
+      dispatch({ type: SEARCH_CITY + SUCCESS, response });
+    }, 1000);
   } catch (error) {
     dispatch({ type: SEARCH_CITY + FAILURE, error });
     toast.error("Error!", {
